@@ -1,13 +1,15 @@
 <template>
   <div class="container">
     <div v-show="mostrar">
-      <h1>Formulario</h1>
+      <h1>{{ mensajeFinal }}</h1>
     </div>
     <label for="id_nombre">Nombre de la Mascota</label>
     <input v-model="nuevoNombre" id="id_nombre" type="text" />
+    <span v-if="mensaje.nombre" style="color: red">{{ mensaje.nombre }}</span>
 
     <label for="id_tipo">Tipo</label>
     <input v-model="nuevoTipo" id="id_tipo" type="text" />
+    <span v-if="mensaje.tipo" style="color: red">{{ mensaje.tipo }}</span>
 
     <label for="id_edad">Edad</label>
     <input v-model="nuevaEdad" id="id_edad" type="number" />
@@ -18,7 +20,7 @@
     <label for="id_telefono">Telefono</label>
     <input v-model="nuevoTelefono" id="id_telefono" type="number" />
 
-    <button v-on:click="agregarMascota()">Agregar</button>
+    <button v-on:click="agregarMascota">Agregar</button>
 
     <table border="1">
       <thead>
@@ -62,19 +64,20 @@ export default {
           tel: "0978617847",
         },
       ],
+      mostrar: false,
+      mensaje: {
+        nombre: null,
+        tipo: null,
+      }, mensajeFinal : false,
     };
   },
 
   methods: {
     agregarMascota() {
-      if (
-        this.nuevoNombre &&
-        this.nuevoTipo &&
-        this.nuevaEdad !== "" &&
-        Number(this.nuevaEdad) >= 0 &&
-        this.nuevoDueno &&
-        this.nuevoTelefono
-      ) {
+      this.mensaje.nombre = null;
+      this.mensaje.tipo = null;
+
+      if (this.validarEntradas()) {
         const nuevo = {
           nombre: this.nuevoNombre,
           tipo: this.nuevoTipo,
@@ -82,17 +85,47 @@ export default {
           dueno: this.nuevoDueno,
           tel: this.nuevoTelefono,
         };
+       
         this.lista.unshift(nuevo);
+        this.mostrar = true;
 
-        // Limpiar campos
-        this.nuevoNombre = "";
-        this.nuevoTipo = "";
-        this.nuevaEdad = "";
-        this.nuevoDueno = "";
-        this.nuevoTelefono = "";
-      } else {
-        alert("Por favor completa todos los campos.");
+        setTimeout(() => {
+          this.mostrar = false;
+        }, 3000);
+        this.mensajeFinal = "Mascota Guardada";
+        this.limpiarPagina();
       }
+    },
+
+    validarEntradas() {
+      try {
+        //let validar = this.mensaje.nombre.dinero;
+        let numero = 2;
+        if (this.nuevoNombre === "") {
+          this.mensaje.nombre = "Nombre es Obligatorio";
+          this.numero--;
+        }
+        if (this.nuevoTipo === "") {
+          this.mensaje.tipo = "Tipo de Mascota es Obligatorio";
+          this.numero;
+        }
+        if (numero === 2) {
+          return true;
+        } else {
+          return false;
+        }
+      } catch (error) {
+        console.error("Error ha ocurrido un problema");
+        console.error(error);
+        this.mostrar = true;
+        this.mensajeFinal = "ha ocurrido un error en el sistema";
+      }
+    },
+    limpiarPagina() {
+      this.nuevoNombre = null;
+      this.nuevoTipo = null;
+      this.mensaje.nombre = null;
+      this.mensaje.tipo = null;
     },
   },
 };

@@ -14,8 +14,9 @@
       <p>
         <strong>Tipo:</strong>
         <span v-for="(tipo, index) in datosPokemon.types" :key="index">
-          {{ tipo.type.name
-          }}<span v-if="index < datosPokemon.types.length - 1">, </span>
+          {{ tipo.type.name}}
+          <span v-if="index < datosPokemon.types.length - 1">, 
+          </span>
         </span>
       </p>
 
