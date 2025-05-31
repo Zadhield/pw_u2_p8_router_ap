@@ -68,7 +68,7 @@ export default {
       mensaje: {
         nombre: null,
         tipo: null,
-      }, mensajeFinal : false,
+      },
     };
   },
 
@@ -85,7 +85,7 @@ export default {
           dueno: this.nuevoDueno,
           tel: this.nuevoTelefono,
         };
-       
+        mensajeFinal = null;
         this.lista.unshift(nuevo);
         this.mostrar = true;
 
@@ -99,7 +99,7 @@ export default {
 
     validarEntradas() {
       try {
-        //let validar = this.mensaje.nombre.dinero;
+        let validar = this.mensaje.nombre.dinero;
         let numero = 2;
         if (this.nuevoNombre === "") {
           this.mensaje.nombre = "Nombre es Obligatorio";
