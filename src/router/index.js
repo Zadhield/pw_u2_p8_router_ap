@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import EstudianteView from '../views/EstudianteView.vue'
 import EstudianteTablaView from '../views/EstudianteTablaView.vue'
 import FormularioView from '../views/FormularioView.vue'
+import  PokemonView from '@/views/PokemonView.vue'
 const routes = [
   {
     path: '/',
@@ -23,6 +24,11 @@ const routes = [
     path: '/formulario',
     name: 'formularioView',
     component: FormularioView
+  },
+  {
+    path: '/pokemon',
+    name: 'pokemonView',
+    component: PokemonView
   },
 
   {

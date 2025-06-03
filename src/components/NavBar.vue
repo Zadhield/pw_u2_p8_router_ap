@@ -6,7 +6,8 @@
     <router-link to="/cliente">cliente</router-link> |
     <router-link to="/pregunta">pregunta</router-link>|
     <router-link to="/formulario">formulario</router-link> |
-    <router-link to="/estudianteTabla">estudianteTabla</router-link>
+    <router-link to="/estudianteTabla">estudianteTabla</router-link>|
+    <router-link to="pokemon"> Pokemon</router-link>
     <router-view />
   </nav>
  </div>
