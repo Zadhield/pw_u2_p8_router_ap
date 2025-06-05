@@ -39,7 +39,7 @@ computed:{
 };
 </script>
 
-<style>
+<style scoped>
 img {
     height: 200px;
     position: absolute;
